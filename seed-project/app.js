@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose'); // import mongoose package
 
 var appRoutes = require('./routes/app');
+var messageRoutes = require('./routes/messages');
 
 var app = express();
 mongoose.connect('mongodb://localhost:27017/node-angular'); // connect to mongoose server via path 
@@ -33,7 +34,8 @@ app.use(function(req, res, next) {
     next();
 });
 
-
+// backend routes with leading URL /message are forwarded to messageRoutes
+app.use('/message', messageRoutes);
 // indicates that all routes (including index rout /) should be forwarded to the appRoutes module
 app.use('/', appRoutes);
 

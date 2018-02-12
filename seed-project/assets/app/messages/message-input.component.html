@@ -1,0 +1,15 @@
+<div class="col-md-8 col-md-offset-2">
+    <!--#f="ngForm" says Don't pass me the html element of form BUT rather the angular form element created in the background-->
+    <form ngNativeValidate (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+            <label for="content">Content</label>
+            <!--Adding ngModel designates it as a FormControl in angular allowing for Angular's formmodule to do validation
+                Enclosing it in square brackets ties the input value to the value of message.content
+                the '?' indicates that it will only fill if the message exists already-->
+            <input [ngModel]="message?.content" name="content" type="text" id="content" class="form-control" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-danger" (click)="onClear(f)">Clear</button>
+    </form>
+
+</div>

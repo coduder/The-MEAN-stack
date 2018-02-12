@@ -1,0 +1,22 @@
+<div class="col-md-8 col-md-offset-2">
+    <!--Set this form's angular form object to myForm created in the signupComponent-->
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input formControlName="firstName" type="text" id='firstName' class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input formControlName="lastName" type="text" id='lastName' class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input formControlName="email" type="email" id='email' class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input formControlName="password" type="password" id='password' class="form-control">
+        </div>
+        <button [disabled]="!myForm.valid" class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
