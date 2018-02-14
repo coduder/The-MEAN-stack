@@ -8,9 +8,11 @@ var mongoose = require('mongoose'); // import mongoose package
 
 var appRoutes = require('./routes/app');
 var messageRoutes = require('./routes/messages');
+var userRoutes = require('./routes/user');
 
 var app = express();
-mongoose.connect('mongodb://localhost:27017/node-angular'); // connect to mongoose server via path 
+mongoose.connect('mongodb://test-user:fire11@ds235788.mlab.com:35788/node-angular-messenger'); // PROD connect to mongoose server via path 
+// mongoose.connect('mongodb://localhost:27017/node-angular'); // DEV connect to mongoose server via path 
 
 
 // view engine setup
@@ -36,6 +38,7 @@ app.use(function(req, res, next) {
 
 // backend routes with leading URL /message are forwarded to messageRoutes
 app.use('/message', messageRoutes);
+app.use('/user', userRoutes);
 // indicates that all routes (including index rout /) should be forwarded to the appRoutes module
 app.use('/', appRoutes);
 
