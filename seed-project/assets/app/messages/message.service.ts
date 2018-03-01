@@ -7,6 +7,7 @@ import { ErrorService } from "../errors/error.service";
 
 @Injectable()
 export class MessageService{
+    private serverURL: String = "https://node-angular-messenger.herokuapp.com/";
     private messages: Message[] = [];
     messageIsEdit = new EventEmitter<Message>();
 
@@ -22,7 +23,7 @@ export class MessageService{
             : '';
         // this line sets up an observable IT DOES NOT ACTUALLY POST THE REQUEST, you have to be listening to the observable for the request to be sent
         // DEV change below link to https://localhost:3000/ ~~~ whatever for dev work
-        return this.http.post('https://node-angular-messenger.herokuapp.com/message' + token, body, {headers: headers})
+        return this.http.post(this.serverURL + 'message' + token, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
                 // remeber the result of path, post, and get requests were set to a filed called obj in routes/messages.js
@@ -43,7 +44,7 @@ export class MessageService{
 
     getMessages() {
     // DEV change below link to https://localhost:3000/ ~~~ whatever for dev work
-        return this.http.get('https://node-angular-messenger.herokuapp.com/message')
+        return this.http.get(this.serverURL + 'message')
             .map((response: Response) => {
                 // obj references the status 200 response obj of the get route from /routes/messages.js
               const messages = response.json().obj;  
@@ -79,7 +80,7 @@ export class MessageService{
             : '';
         // this line sets up an observable IT DOES NOT ACTUALLY POST THE REQUEST, you have to be listening to the observable for the request to be sent
         // DEV change below link to https://localhost:3000/ ~~~ whatever for dev work
-        return this.http.patch('https://node-angular-messenger.herokuapp.com/message/' + message.messageId + token, body, {headers: headers})
+        return this.http.patch(this.serverURL + 'message/' + message.messageId + token, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -96,7 +97,7 @@ export class MessageService{
             : '';
         console.log("made past splice");
         // DEV change below link to https://localhost:3000/ ~~~ whatever for dev work
-        return this.http.delete('https://node-angular-messenger.herokuapp.com/message/' + message.messageId + token)
+        return this.http.delete(this.serverURL + 'message/' + message.messageId + token)
             .map((response: Response) =>  response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());

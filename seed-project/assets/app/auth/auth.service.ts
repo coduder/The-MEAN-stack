@@ -8,7 +8,7 @@ import { ErrorService } from "../errors/error.service";
 
 @Injectable()
 export class AuthService {
-
+    private serverURL: String = 'https://node-angular-messenger.herokuapp.com/';
     constructor(private http: Http, private errorService: ErrorService){}
 
     signup(user: User) {
@@ -16,7 +16,7 @@ export class AuthService {
         const headers = new Headers({'Content-Type': 'application/json'}); // look at message.service for explanation
 
         // DEV change below link to https://localhost:3000/ ~~~ whatever for dev work
-        return this.http.post('https://node-angular-messenger.herokuapp.com/user', body, {headers: headers})
+        return this.http.post(this.serverURL + 'user', body, {headers: headers})
             .map( (response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -28,7 +28,7 @@ export class AuthService {
         const headers = new Headers({'Content-Type': 'application/json'}); // look at message.service for explanation
 
         // DEV change below link to https://localhost:3000/ ~~~ whatever for dev work
-        return this.http.post(' https://node-angular-messenger.herokuapp.com/signin', body, {headers: headers})
+        return this.http.post(this.serverURL + 'signin', body, {headers: headers})
             .map( (response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());

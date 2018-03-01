@@ -11,7 +11,7 @@ var messageRoutes = require('./routes/messages');
 var userRoutes = require('./routes/user');
 
 var app = express();
-mongoose.connect('mongodb://test-user:fire11@ds235788.mlab.com:35788/node-angular-messenger'); // PROD connect to mongoose server via path 
+mongoose.connect('test-user:fire11@ds235788.mlab.com:35788/node-angular-messenger'); // PROD connect to mongoose server via path 
 // mongoose.connect('mongodb://localhost:27017/node-angular'); // DEV connect to mongoose server via path 
 
 
